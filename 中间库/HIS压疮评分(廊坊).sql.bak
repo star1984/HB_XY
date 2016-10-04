@@ -1,6 +1,6 @@
 USE [hbidata]
 GO
-/****** Object:  StoredProcedure [dbo].[P_ycpf_ETL]    Script Date: 04/07/2016 14:15:45 ******/111
+/****** Object:  StoredProcedure [dbo].[P_ycpf_ETL]    Script Date: 04/07/2016 14:15:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
