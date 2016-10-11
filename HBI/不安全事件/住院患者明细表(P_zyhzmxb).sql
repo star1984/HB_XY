@@ -37,7 +37,7 @@ FROM #CYBR a,#isgfxyc b
 WHERE a.gid=b.brbh 
 
 --更新是否跌倒坠床高风险标志 select *   from mpehr..THL_Ddzcpf order by pgsj desc
-----1.小于等于14岁是儿童；儿童坠床评估高风险的分值范围≤8分，成人跌倒评估高风险的分值范围≥4分
+----1.小于等于14岁是儿童；儿童坠床评估高风险的分值范围≤8分，成人跌倒评估高风险的分值范围≥17分
 SELECT distinct aa.brbh,aa.pgsj,aa.pgzf,bb.nl,bb.nldw,0 ischild INTO #isgfxddzc from mpehr..THL_Ddzcpf aa INNER JOIN #CYBR bb ON aa.brbh=bb.gid
 where aa.pgsj=(select MIN(pgsj) from mpehr..THL_Ddzcpf bb where aa.brbh=bb.brbh) 
 UNION 
@@ -47,7 +47,7 @@ where aa.pgsj=(select MIN(pgsj) from mpehr..THL_Ddzcpf_ET bb where aa.brbh=bb.br
 
 UPDATE a 
 SET isddgfx=CASE WHEN b.ischild=1  AND b.pgzf<=8 THEN 1 
-                 WHEN b.ischild=0  AND  b.pgzf>=4 THEN 1  ELSE 0 end
+                 WHEN b.ischild=0  AND  b.pgzf>=17 THEN 1  ELSE 0 end
 FROM #CYBR a,#isgfxddzc b
 WHERE a.gid=b.brbh 
 
