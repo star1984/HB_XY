@@ -20,7 +20,9 @@ Select * into #EXPOSURE From EXPOSURE Where 1=2
 Set @SQLText=
   'INSERT INTO #EXPOSURE(id,fssj,name,fsks,shr)
   Select *
-  From OpenQuery(xlgr, ''Select cid id,  EVENT_TIME fssj,P_NAME name,P_DEPARTMENT fsks,REVIEWER shr  from C_EXPOSURE where nvl(REVIEWER,'''''''')<>'''''''' '')'
+  From OpenQuery(xlgr, ''Select cid id,  EVENT_TIME fssj,P_NAME name,P_DEPARTMENT fsks,REVIEWER shr  from C_EXPOSURE  '')'
+
+--where nvl(REVIEWER,'''''''')<>''''''''
 
 exec(@SQLText)
 

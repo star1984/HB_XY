@@ -241,6 +241,36 @@ end Catch
 Select @E=GetDate()
 Exec P_GetDateTime_Interval 'HIS药房发药记录',@S, @E
 
+--杏林院感数据
+	-- 杏林院感感染上报信息
+	Select @S=GetDate()
+
+	begin try      
+	  Exec P_xinglin_INFECTION  
+	end Try              
+	begin catch              
+	 insert into error_Log(ZxDate,error_step,error_text)               
+	 values(getdate(),'杏林院感感染上报信息(P_xinglin_INFECTION)',ERROR_MESSAGE())               
+	end Catch   
+	  
+	Select @E=GetDate()
+	Exec P_GetDateTime_Interval '杏林院感感染上报信息',@S, @E
+	
+	
+	-- 杏林院感职业暴露
+	Select @S=GetDate()
+
+	begin try      
+	  Exec P_xinglin_EXPOSURE 
+	end Try              
+	begin catch              
+	 insert into error_Log(ZxDate,error_step,error_text)               
+	 values(getdate(),'杏林院感职业暴露(P_xinglin_EXPOSURE)',ERROR_MESSAGE())               
+	end Catch   
+	  
+	Select @E=GetDate()
+	Exec P_GetDateTime_Interval '杏林院感职业暴露',@S, @E
+
 
 
 
